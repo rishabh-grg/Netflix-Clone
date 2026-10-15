@@ -63,6 +63,16 @@ def save_input():
         app.logger.exception("Could not save input to Google Sheets")
         return "Could not save your input. Please check the configuration.", 500
 
+@app.route("/debug-files")
+def debug_files():
+    return {
+        "base_directory": str(BASE_DIR),
+        "public_directory": str(PUBLIC_DIR),
+        "public_directory_exists": PUBLIC_DIR.is_dir(),
+        "index_exists": (PUBLIC_DIR / "index.html").is_file(),
+        "signin_exists": (PUBLIC_DIR / "signin.html").is_file()
+    }
+
 
 if __name__ == "__main__":
     app.run(debug=False)
