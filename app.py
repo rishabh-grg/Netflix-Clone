@@ -39,10 +39,9 @@ def signin():
 
 
 # Serve the CSS file
-@app.route("/Style.CSS")
+@app.route("/style.css")
 def stylesheet():
-    return send_from_directory(PUBLIC_DIR, "Style.CSS")
-
+    return send_from_directory(PUBLIC_DIR, "style.css")
 
 # Receive the email or mobile number and save it
 @app.route("/continue", methods=["POST"])
