@@ -15,6 +15,18 @@ app = Flask(__name__)
 def home():
     return send_from_directory(str(PUBLIC_DIR), "index.html")
 
+@app.route("/continue", methods=["GET", "POST"])
+def continue_route():
+    if request.method == "GET":
+        return "Continue route is working. Submit the form using POST."
+
+    email = request.form.get("email", "").strip()
+
+    if not email:
+        return "Please enter an email or mobile number.", 400
+
+    return f"Form received successfully for: {email}"
+
 
 @app.route("/signin.html")
 def signin():
