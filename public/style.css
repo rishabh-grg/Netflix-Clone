@@ -1,0 +1,560 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+  background-color: #000000;
+  margin: 0;
+}
+.hero {
+    background-image: url('Assets/Images/bg.jpg');
+    height: 80vh;
+    background-size: max(1000px, 100vw);
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: relative;
+    z-index: 2;
+}
+.hero .box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.65;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.974);
+    z-index: -1;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;    
+}
+
+#logo {
+    height: 40px;
+}
+
+#hero-content {
+    text-align: center;
+    color: white;
+    margin-top: 10vh;
+    ;
+}
+
+
+
+
+/* Hero heading */
+#hero-content h1 {
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    font-size: 40px;
+}
+
+#hero-content h3 {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+}
+
+#hero-content p {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+/* Email input and Get Started button */
+#hero-content form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+#hero-content input {
+    width: 303px;
+    height: 70px;
+    box-sizing: border-box;
+    padding: 15px 20px;
+    font-size: 18px;
+    color: white;
+    background: #1c1c1c99;
+    border: 1px solid #666;
+    border-radius: 5px;
+}
+
+#hero-content input::placeholder {
+    color: #bcbcbc;
+}
+
+#hero-content button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-width: 227px;
+    height: 70px;
+    padding: 0 25px;
+    font-family: Arial, sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    background: #e50914;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: filter 0.3s ease;
+}
+
+#hero-content button img {
+    width: 24px;
+    height: 24px;
+}
+
+#hero-content button:hover {
+    filter: brightness(75%);
+}
+
+/* Language dropdown */
+.navbar select {
+    background: #161616b3;
+    color: white;
+    padding: 10px 14px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-right: 12px;
+}
+
+/* Sign In button */
+.navbar a {
+    display: inline-block;
+    background: #e50914;
+    color: white;
+    padding: 10px 22px;
+    border-radius: 5px;
+    font: bold 16px Arial, sans-serif;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background: #c11119;
+}
+
+
+.netflix-curve {
+  height: 80px;
+  background: #000; /* Match your page background */
+  border-top: 4px solid #e50914; /* Netflix red */
+  border-top-left-radius: 50% 100px;
+  border-top-right-radius: 50% 100px;
+  box-shadow: 0 -5px 15px rgba(229, 9, 20, 0.4); /* Optional red glow */
+}
+
+.netflix-curve {
+  height: 40px;
+  border-top: 3px solid #e50914;
+  border-top-left-radius: 50% 50px;
+  border-top-right-radius: 50% 50px;
+  box-shadow: 0 -8px 20px rgba(229, 9, 20, 0.5);
+  position: relative;
+  z-index: 2;
+  background-color: rgb(0, 0, 0)
+}
+
+
+/* Trending Movies */
+#trending {
+    padding: 30px 5%;
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+.movie-list {
+    display: flex;
+    justify-content: space-between;
+    gap: 25px;
+    overflow-x: auto;
+    padding: 15px 5px 25px;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+}
+
+.movie {
+    flex: 0 0 180px;
+    scroll-snap-align: start;
+    text-decoration: none;
+}
+
+.movie img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s;
+}
+
+.movie:hover img {
+    transform: scale(1.08);
+}
+
+/* Hide scrollbar */
+.movie-list {
+    scrollbar-width: none;
+}
+
+.movie-list::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* FAQ Section */
+#faq {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    padding: 40px 8%;
+}
+
+#faq h2 {
+    font-size: 30px;
+    margin: auto;
+}
+
+#faq details {
+    background-color: #2d2d2d;
+    margin-bottom: 10px;
+}
+
+#faq summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 30px;
+    font-size: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Plus icon */
+#faq summary::after {
+    content: "+";
+    font-size: 40px;
+    font-weight: 200;
+}
+
+/* Change plus to cross when opened */
+#faq details[open] summary::after {
+    content: "×";
+}
+
+#faq details p {
+    padding: 0 30px 25px;
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+#faq details:hover {
+    background-color: #414141;
+}
+
+/* Mobile screen */
+@media (max-width: 600px) {
+    #faq {
+        padding: 25px 5%;
+    }
+
+    #faq h2 {
+        font-size: 23px;
+    }
+
+    #faq summary {
+        padding: 22px;
+        font-size: 18px;
+    }
+
+    #faq summary::after {
+        font-size: 30px;
+    }
+
+    #faq details p {
+        padding: 0 22px 22px;
+        font-size: 16px;
+    }
+}
+
+
+
+/* Reasons to Join */
+#reasons {
+    background-color: black;
+    color: white;
+    padding: 30px 7%;
+}
+
+#reasons h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.reason-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.reason {
+    background: linear-gradient(to bottom right, #192247, #210f19);
+    padding: 30px;
+    border-radius: 20px;
+    height: 190px;
+    position: relative;
+}
+
+.reason h3 {
+    font-size: 24px;
+    margin: 0 0 15px;
+}
+
+.reason p {
+    color: #bcbcc7;
+    font-size: 18px;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.reason img {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+/* Smaller screens */
+@media (max-width: 600px) {
+    .reason-list {
+        grid-template-columns: 1fr;
+    }
+
+    .reason {
+        height: 190px;
+        padding: 22px;
+    }
+
+    .reason h3 {
+        font-size: 20px;
+    }
+
+    .reason p {
+        font-size: 16px;
+    }
+}
+
+/* Footer */
+footer {
+    background: black;
+    color: #aaa;
+    padding: 40px 7%;
+}
+
+footer p {
+    margin-bottom: 35px;
+}
+
+footer a {
+    color: #aaa;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.footer-links div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+footer button {
+    background: #111;
+    color: white;
+    padding: 10px 15px;
+    border: 1px solid #666;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+footer p:last-child {
+    margin-top: 40px;
+}
+
+.language {
+    background: #111;
+    color: white;
+    padding: 10px 15px;
+    border: 1px solid #666;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+/* Sign In Page */
+
+body:has(#signinForm) {
+    background-color: #141414;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+/* Navigation bar */
+nav:has(img[alt="Netflix Logo"]) {
+    padding: 25px 5%;
+}
+
+nav img {
+    width: 150px;
+    height: auto;
+}
+
+/* Main content */
+body:has(#signinForm) main {
+    width: 90%;
+    max-width: 450px;
+    margin: 60px auto;
+}
+
+body:has(#signinForm) main h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+body:has(#signinForm) main p {
+    color: #b3b3b3;
+    line-height: 1.5;
+}
+
+/* Sign in form */
+#signinForm {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 25px;
+}
+
+#signinForm label {
+    font-size: 14px;
+}
+
+#signinForm input {
+    background-color: #1a1a1a;
+    color: white;
+    border: 1px solid #444;
+    padding: 16px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#signinForm input:focus {
+    outline: 2px solid white;
+}
+
+#signinForm button {
+    padding: 15px;
+    background-color: #e50914;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#signinForm button:hover {
+    background-color: #c11119;
+}
+
+/* Get Help link */
+body:has(#signinForm) main > a {
+    display: inline-block;
+    margin-top: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+body:has(#signinForm) main > a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+body:has(#signinForm) footer {
+    padding: 30px 5%;
+    background-color: #181818;
+    color: #b3b3b3;
+    font-size: 14px;
+}
+
+body:has(#signinForm) footer a {
+    display: inline-block;
+    color: #b3b3b3;
+    margin: 12px 20px 12px 0;
+}
+
+body:has(#signinForm) footer p {
+    margin-bottom: 25px;
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+    body:has(#signinForm) main {
+        margin: 35px auto;
+    }
+
+    body:has(#signinForm) main h1 {
+        font-size: 25px;
+    }
+
+    nav:has(img[alt="Netflix Logo"]) {
+        padding: 20px;
+    }
+
+    nav img {
+        width: 120px;
+    }
+}
+/* Sign In Page Background */
+.signin-page {
+    background: linear-gradient(
+        to bottom,
+        #451719,
+        #250003,
+        #141414 60%
+    );
+
+    color: white;
+    min-height: 100vh;
+    margin: 0;
+}
+#signinForm input::placeholder {
+    color: #b3b3b3;
+}
+
+nav + hr {
+    border: none;
+    height: 1px;
+    background-color: #5e0005;
+    margin: 0;
+    width: 100%;
+}
