@@ -89,6 +89,15 @@ def debug_files():
         "signin_exists": (PUBLIC_DIR / "signin.html").is_file()
     }
 
+@app.route("/health-check", methods=["GET"])
+def health_check():
+    return {
+        "status": "Flask is running",
+        "continue_route": str(
+            app.url_map
+        )
+    }, 200
+
 
 if __name__ == "__main__":
     app.run(debug=False)
