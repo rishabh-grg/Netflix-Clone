@@ -1,4 +1,4 @@
-
+```python
 from flask import Flask, request, send_from_directory
 from pathlib import Path
 import os
@@ -11,28 +11,14 @@ PUBLIC_DIR = BASE_DIR / "public"
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/", methods=["GET"])
 def home():
     return send_from_directory(str(PUBLIC_DIR), "index.html")
 
 
-@app.route("/signin.html")
+@app.route("/signin.html", methods=["GET"])
 def signin():
     return send_from_directory(str(PUBLIC_DIR), "signin.html")
-
-
-@app.route("/<path:filename>")
-def public_files(filename):
-    file_path = (PUBLIC_DIR / filename).resolve()
-
-    # Prevent access to files outside the public folder
-    if not file_path.is_relative_to(PUBLIC_DIR.resolve()):
-        return "Not Found", 404
-
-    if file_path.is_file():
-        return send_from_directory(str(PUBLIC_DIR), filename)
-
-    return "Page not found", 404
 
 
 @app.route("/continue", methods=["POST"])
@@ -44,15 +30,11 @@ def save_input():
 
     try:
         spreadsheet_id = os.environ["SPREADSHEET_ID"]
-
         credentials_info = json.loads(
             os.environ["GOOGLE_SERVICE_ACCOUNT_JSON"]
         )
 
-        client = gspread.service_account_from_dict(
-            credentials_info
-        )
-
+        client = gspread.service_account_from_dict(credentials_info)
         spreadsheet = client.open_by_key(spreadsheet_id)
         sheet = spreadsheet.worksheet("Sheet1")
 
@@ -60,10 +42,11 @@ def save_input():
 
         return """
         <!DOCTYPE html>
-        <html>
+        <html lang="en">
         <head>
-            <title>Success</title>
+            <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Success</title>
         </head>
         <body>
             <h2>Success!</h2>
@@ -74,30 +57,45 @@ def save_input():
         """, 200
 
     except Exception:
-        app.logger.exception("Could not save input to Google Sheets")
+        app.logger.exception("Google Sheets submission failed")
         return (
-            "Could not save your input. Please check the server configuration.",
+            "Could not save your input. Check the Vercel runtime logs.",
             500
         )
 
 
-@app.route("/debug-files")
+@app.route("/debug-files", methods=["GET"])
 def debug_files():
     return {
         "public_directory_exists": PUBLIC_DIR.is_dir(),
         "index_exists": (PUBLIC_DIR / "index.html").is_file(),
-        "signin_exists": (PUBLIC_DIR / "signin.html").is_file()
+        "signin_exists": (PUBLIC_DIR / "signin.html").is_file(),
+        "routes": str(app.url_map)
     }
+
 
 @app.route("/health-check", methods=["GET"])
 def health_check():
     return {
         "status": "Flask is running",
-        "continue_route": str(
-            app.url_map
-        )
+        "routes": str(app.url_map)
     }, 200
+
+
+@app.route("/<path:filename>", methods=["GET"])
+def public_files(filename):
+    root = PUBLIC_DIR.resolve()
+    file_path = (root / filename).resolve()
+
+    if not file_path.is_relative_to(root):
+        return "Not Found", 404
+
+    if file_path.is_file():
+        return send_from_directory(str(root), filename)
+
+    return "Page not found", 404
 
 
 if __name__ == "__main__":
     app.run(debug=False)
+```
